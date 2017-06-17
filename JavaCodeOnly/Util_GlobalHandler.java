@@ -1,15 +1,12 @@
-/**
- * Created by Bo Qin on 6/16/2014
- */
-
 package pctest.apps.sarbox;
 
-/*
- * Class Description:   
- *  
- * Singleton Class that holds global variable accessible from all classes.  
- * Acts like a database, used to retain user values between fragment switches 
- *   
+/**
+ * Singleton Class that holds global variable accessible from all classes.
+ * Acts like a database, used to retain user values between fragment switches
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
  */
 public class Util_GlobalHandler {
 	private static Util_GlobalHandler globalHandler;

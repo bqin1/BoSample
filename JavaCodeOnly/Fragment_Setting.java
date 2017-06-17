@@ -20,6 +20,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This fragment opens the settings page, where user to update app or log in
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Setting extends Fragment {
 
 	Button buttonLock;
@@ -135,8 +142,10 @@ public class Fragment_Setting extends Fragment {
 												System.out
 														.println(inputPassword);
 											} catch (NoSuchAlgorithmException e) {
+												// TODO: generate better error messages
 												e.printStackTrace();
 											} catch (UnsupportedEncodingException e) {
+												// TODO: generate better error messages
 												e.printStackTrace();
 											}
 

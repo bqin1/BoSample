@@ -29,6 +29,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * This fragment opens the references page
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Reference extends Fragment {
 
 	Button button_datarate;
@@ -88,6 +95,7 @@ public class Fragment_Reference extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "reference_bicouplersetup"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -115,6 +123,7 @@ public class Fragment_Reference extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "reference_datarate"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -142,6 +151,7 @@ public class Fragment_Reference extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "reference_datachecklist"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -197,6 +207,7 @@ public class Fragment_Reference extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "reference_freqchannel"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -230,10 +241,13 @@ public class Fragment_Reference extends Fragment {
 					new FileOutputStream(new File(
 							methanolFilePath))); 
 		} catch (NotFoundException e1) {
+			// TODO: generate better error messages
 			e1.printStackTrace(); 
 		} catch (FileNotFoundException e1) {
+			// TODO: generate better error messages
 			e1.printStackTrace();
-		} catch (IOException e1) { 
+		} catch (IOException e1) {
+			// TODO: generate better error messages
 			e1.printStackTrace();
 		}
 

@@ -8,8 +8,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 
-/*
- * Logo Screen before moving into SARBox 
+/**
+ * This activity displays a Logo Screen and some terms of use before moving the user to the main class
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
  */
 public class Activity_SplashScreen extends Activity {
 
@@ -18,16 +22,12 @@ public class Activity_SplashScreen extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_splashscreen);
 
-		int screenSize = getResources().getConfiguration().screenLayout &
-				Configuration.SCREENLAYOUT_SIZE_MASK;
-
-		String toastMsg = "This tool for free and educational use only. By using this app, you agree that PCTESTLAB will NOT be liable for any results or data derived accidentally or intentional due to using this app.";;
-
+		// Show users the terms, must click to proceed into app
+		String toastMsg = getResources().getString(R.string.toastmessage_splash);
 		new AlertDialog.Builder(this)
-				.setTitle("PCTESTLAB SARBOX")
+				.setTitle(getResources().getString(R.string.app_name))
 				.setMessage(toastMsg)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
@@ -46,5 +46,4 @@ public class Activity_SplashScreen extends Activity {
 				})
 				.show().setCancelable(false);;
 	}
-
 }

@@ -22,6 +22,13 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This fragment opens the SAR value scaler
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Calc_Scaling extends Fragment {
 
     Button button_zero;
@@ -123,7 +130,6 @@ public class Fragment_Calc_Scaling extends Fragment {
 
         isLocked = Util_GlobalHandler.getGlobalHandler().getIsLocked();
 
-        // Easy Unlocking
         isLocked = false;
 
         if (isLocked) {
@@ -259,6 +265,7 @@ public class Fragment_Calc_Scaling extends Fragment {
 
 
                 } catch (IOException e) {
+                    // TODO: generate better error messages
                     e.printStackTrace();
                 }
 
@@ -309,6 +316,7 @@ public class Fragment_Calc_Scaling extends Fragment {
                         getActivity(), "calc_pagedivider"));
 
             } catch (IOException e) {
+                // TODO: generate better error messages
                 e.printStackTrace();
             }
 
@@ -528,9 +536,10 @@ public class Fragment_Calc_Scaling extends Fragment {
 
     }
 
-    // load up previous values
+    /**
+     * loads up previous values if the user has switched fragments
+     */
     public void loadPrevious() {
-        // load up previous values
         setMeasuredPower(Util_GlobalHandler.getGlobalHandler()
                 .get_Scaling_MeasuredPower());
         setMaxAllowedPower(Util_GlobalHandler.getGlobalHandler()
@@ -655,7 +664,6 @@ public class Fragment_Calc_Scaling extends Fragment {
 
     }
 
-    //2
     public void setAnswer2(String temp, String modifier) {
         textview_Answer2.setText(temp + modifier);
         Util_GlobalHandler.getGlobalHandler().set_Scaling_Equation2(
@@ -686,7 +694,6 @@ public class Fragment_Calc_Scaling extends Fragment {
 
     }
 
-    //3
     public void setAnswer3(String temp, String modifier) {
         textview_Answer3.setText(temp + modifier);
         Util_GlobalHandler.getGlobalHandler().set_Scaling_Equation3(
@@ -717,7 +724,6 @@ public class Fragment_Calc_Scaling extends Fragment {
 
     }
 
-    //4
     public void setAnswer4(String temp, String modifier) {
         textview_Answer4.setText(temp + modifier);
         Util_GlobalHandler.getGlobalHandler().set_Scaling_Equation4(
@@ -748,7 +754,9 @@ public class Fragment_Calc_Scaling extends Fragment {
 
     }
 
-    // determine which textbox was selected
+    /**
+     * determine which edittext was selected and return the value in it
+     */
     public String determineClicked() {
         if (textSelect.equals("measuredpower"))
             return Util_GlobalHandler.getGlobalHandler()
@@ -766,7 +774,6 @@ public class Fragment_Calc_Scaling extends Fragment {
         return "";
     }
 
-    // set the right textbox
     public void setClicked(String temp) {
         if (textSelect.equals("measuredpower"))
             setMeasuredPower(temp);
@@ -883,12 +890,15 @@ public class Fragment_Calc_Scaling extends Fragment {
                 }
 
             } catch (NumberFormatException e) {
+                // TODO: generate better error messages
                 setAnswer(error_nonNumber, "");
             }
         }
     }
 
-    // saves previous values in a rotation fashion
+    /**
+     * saves previous values in a rotation fashion
+     */
     public void saveAnswer(String temp1, String temp2, String temp3, String temp4, String temp5) {
         if (savedAnswer < 2 || savedAnswer > 4) {
             savedAnswer = 2;

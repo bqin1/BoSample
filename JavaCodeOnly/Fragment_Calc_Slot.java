@@ -21,6 +21,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * This fragment opens the GPRS Slot calculator
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Calc_Slot extends Fragment {
 
 	Button button_zero;
@@ -173,6 +180,7 @@ public class Fragment_Calc_Slot extends Fragment {
 						getActivity(), "calc_label_frameslot4"));
 				
 			} catch (IOException e) {
+				// TODO: generate better error messages
 				e.printStackTrace();
 			}
 			
@@ -412,9 +420,10 @@ public class Fragment_Calc_Slot extends Fragment {
 		}
 	}
 
-	// load up previous values
+	/**
+	 * loads up previous values if the user has switched fragments
+	 */
 	public void loadPrevious() {
-		// load up previous values
 		setBurstSlot1(Util_GlobalHandler.getGlobalHandler()
 				.get_Slot_BurstSlot1());
 		setBurstSlot2(Util_GlobalHandler.getGlobalHandler()
@@ -517,7 +526,9 @@ public class Fragment_Calc_Slot extends Fragment {
 		Util_GlobalHandler.getGlobalHandler().set_Slot_BurstSlot4(temp);
 	}
 
-	// determine which textbox was selected
+	/**
+	 * determine which edittext was selected and return the value in it
+	 */
 	public String determineClicked() {
 		if (textSelect.equals("burstslot1"))
 			return Util_GlobalHandler.getGlobalHandler().get_Slot_BurstSlot1();
@@ -531,7 +542,6 @@ public class Fragment_Calc_Slot extends Fragment {
 		return "";
 	}
 
-	// set the right textbox
 	public void setClicked(String temp) {
 		if (textSelect.equals("burstslot1"))
 			setBurstSlot1(temp);
@@ -632,27 +642,17 @@ public class Fragment_Calc_Slot extends Fragment {
 
 			if (frameslot1Value > 1000000 || frameslot2Value > 1000000
 					|| frameslot3Value > 1000000 || frameslot4Value > 1000000) {
-				// setFrameSlot1(error_largeResult);
+
 			} else {
 				setFrameSlot1(frameslot1Value + "");
 				setFrameSlot2(frameslot2Value + "");
 				setFrameSlot3(frameslot3Value + "");
 				setFrameSlot4(frameslot4Value + "");
 				setAnswer(error_success);
-				// highlight box but also remember the .25 special rule
-
-				/*
-				 * ArrayList<Double> frames = new ArrayList<Double>();
-				 * frames.add(frameslot1Value); frames.add(frameslot2Value);
-				 * frames.add(frameslot3Value); frames.add(frameslot4Value);
-				 * 
-				 * Collections.sort(frames); double testSlot =
-				 * frames.get(frames.size()-1);
-				 */
-
 			}
 
 		} catch (NumberFormatException e) {
+			// TODO: generate better error messages
 			setAnswer(error_nonNumber);
 		}
 

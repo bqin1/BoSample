@@ -21,6 +21,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * This fragment opens the SAR frequency interpolator
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Calc_Interpolate extends Fragment {
 
 	Button button_zero;
@@ -154,6 +161,7 @@ public class Fragment_Calc_Interpolate extends Fragment {
 						"calc_label_interpolate_y2"));
 
 			} catch (IOException e) {
+				// TODO: generate better error messages
 				e.printStackTrace();
 			}
 
@@ -398,9 +406,10 @@ public class Fragment_Calc_Interpolate extends Fragment {
 		}
 	}
 
-	// load up previous values
+	/**
+	 * loads up previous values if the user has switched fragments
+	 */
 	public void loadPrevious() {
-		// load up previous values
 		setX1(Util_GlobalHandler.getGlobalHandler().get_Interpolate_x1());
 		setX2(Util_GlobalHandler.getGlobalHandler().get_Interpolate_x2());
 		setY1(Util_GlobalHandler.getGlobalHandler().get_Interpolate_y1());
@@ -481,7 +490,9 @@ public class Fragment_Calc_Interpolate extends Fragment {
 		Util_GlobalHandler.getGlobalHandler().set_Interpolate_xi(temp);
 	}
 
-	// determine which textbox was selected
+	/**
+	 * determine which edittext was selected and return the value in it
+	 */
 	public String determineClicked() {
 		if (textSelect.equals("x1"))
 			return Util_GlobalHandler.getGlobalHandler().get_Interpolate_x1();
@@ -497,7 +508,6 @@ public class Fragment_Calc_Interpolate extends Fragment {
 		return "";
 	}
 
-	// set the right textbox
 	public void setClicked(String temp) {
 		if (textSelect.equals("x1"))
 			setX1(temp);

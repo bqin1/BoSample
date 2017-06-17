@@ -1,13 +1,14 @@
-/**
- * Created by Bo Qin on 6/16/2014
- */
-
-// TODO: move the error checking in here, including checking whether whats
-// entered is a text or number
-
 package pctest.apps.sarbox;
 
 import java.util.Arrays;
+
+/**
+ * This utility class provides reused calculator functions
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 
 public class Util_Calculator {
 
@@ -15,7 +16,9 @@ public class Util_Calculator {
 
 	}
 
-	// takes in a dbm value and returns the mW after dutyfactor calculation
+	/**
+	 * takes in a dbm value and returns the mW after dutyfactor calculation
+	 */
 	public static double dbmToWatt(double dbm, double dutyfactor) {
 		double inter = dbm / 10.0;
 		double duty = dutyfactor / 100.0;
@@ -23,13 +26,17 @@ public class Util_Calculator {
 		return numRound(finalValue, 10000);
 	}
 
-	// takes in a mw value and returns the dbm
+	/**
+	 * takes in a mw value and returns the dbm
+	 */
 	public static double MWtoDBM(double mw) {
 		double finalValue = 10 * Math.log10(mw);
 		return numRound(finalValue, 10000);
 	}
 
-	// takes in target and a slot and computer frame
+	/**
+	 * takes in target and a slot and computer frame
+	 */
 	public static double BursttoFrame(double burstTarget, double slot) {
 		double temp = burstTarget - 30.0;
 		temp = temp / 10.0;
@@ -43,48 +50,36 @@ public class Util_Calculator {
 	}
 
 	public static double ICExclusionTableLookup300mhz(double d) {
-		// y = mW, x = distance
-		// y = -3E-05x3 + 0.0026x2 + 6.0378x + 40.667
 		return -0.00003*d*d*d+0.0026*d*d+6.0378*d+40.667;
 	}
 
 	public static double ICExclusionTableLookup450mhz(double d) {
-		// y = mW, x = distance
-		// y = 6E-05x3 - 0.0043x2 + 3.6499x + 33.9
 		return 0.00006*d*d*d-0.0043*d*d+3.6499*d+33.9;
 	}
 
 	public static double ICExclusionTableLookup835mhz(double d) {
-		// y = mW, x = distance
-		// y = 3E-05x3 - 0.0026x2 + 2.5622x + 4.3333
 		return 0.00003*d*d*d- 0.0026*d*d+ 2.5622*d+ 4.3333;
 	}
 
 	public static double ICExclusionTableLookup1900mhz(double d) {
-		// y = mW, x = distance
-		// y = 0.0033x3 + 0.0067x2 - 0.1033x + 6.9667
 		return 0.0033*d*d*d+ 0.0067*d*d- 0.1033*d+ 6.9667;
 	}
 
 	public static double ICExclusionTableLookup2450mhz(double d) {
-		// y = mW, x = distance
-		// y = 0.0013x3 + 0.0712x2 - 0.7338x + 5.7667
 		return 0.0013*d*d*d+0.0712*d*d-0.7338*d+5.7667;
 	}
 
 	public static double ICExclusionTableLookup3500mhz(double d) {
-		// y = mW, x = distance
-		// y = 0.0006x3 + 0.0976x2 - 0.7646x + 3.2667
 		return 0.0006*d*d*d+ 0.0976*d*d- 0.7646*d+ 3.2667;
 	}
 
 	public static double ICExclusionTableLookup5800mhz(double d) {
-		// y = mW, x = distance
-		// y = -0.0013x3 + 0.12x2 - 0.5667x + 1
 		return -0.0013*d*d*d+ 0.12*d*d- 0.5667*d+ 1;
 	}
 
-	// finds the 1g exclusion
+	/**
+	 * finds the 1g exclusion
+	 */
 	public static double Exclusion(double mWValue, double frequency,
 			double distance) {
 		double inter = (mWValue / distance);
@@ -92,7 +87,9 @@ public class Util_Calculator {
 		return numRound(finalValue, 10000);
 	}
 
-	// scales SAR
+	/**
+	 * Finds the scaled sar
+	 */
 	public static double SARScaling(double powerValue, double targetValue,
 			double sarValue, double dutyscaling) {
 
@@ -104,19 +101,25 @@ public class Util_Calculator {
 		return finalValue;
 	}
 
-	// SPLS Ratio
+	/**
+	 * Calculates the SPLS Ratio
+	 */
 	public static double SPLS(double sarSum, double distance) {
 		double inter = Math.pow(sarSum, 1.5);
 		double finalValue = inter / distance;
 		return numRound(finalValue, 10000);
 	}
 
-	// takes in a value and rounds it
+	/**
+	 * Rounds a double by the number of digits
+	 */
 	public static double numRound(double value, int digit) {
 		return (double) Math.round(value * digit) / digit;
 	}
 
-	// given x1, y1 find slope
+	/**
+	 * given x1, y1 find slope
+	 */
 	public static double[] findSlope(double[] x1, double[] y1) {
 
 		double[] dx = new double[x1.length - 1];
@@ -143,7 +146,9 @@ public class Util_Calculator {
 
 	}
 
-	// given x1, y1 find intercept
+	/**
+	 * given x1, y1 find intercept
+	 */
 	public static double[] findIntercept(double[] x1, double[] y1,
 			double[] slope1) {
 
@@ -160,7 +165,9 @@ public class Util_Calculator {
 		return intercept;
 	}
 
-	// give x, y, slope and intercept, interpolate at xi
+	/**
+	 * given x, y, slope and intercept, interpolate at xi
+	 */
 	public static double[] interpolate(double[] x, double[] y, double[] xi,
 			double[] slope, double[] intercept) {
 		double[] yi = new double[xi.length];
@@ -182,8 +189,9 @@ public class Util_Calculator {
 
 	}
 
-	// x is the 2 x values, y is the 2 y values, and xi is the value you are
-	// interpolating
+	/**
+	 * x is the 2 x values, y is the 2 y values, and xi is the value you are interpolating
+	 */
 	public static final double[] interpLinear(double[] x, double[] y,
 			double[] xi) throws IllegalArgumentException {
 

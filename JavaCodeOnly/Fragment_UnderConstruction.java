@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 
- * @author bo.qin
  * This fragment is an under construction message
  *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
  */
 public class Fragment_UnderConstruction extends Fragment{
    @Override

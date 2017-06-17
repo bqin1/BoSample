@@ -24,6 +24,13 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This fragment opens the SAR exclusion calculator
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Calc_Exclusion extends Fragment {
 
 	Button button_zero;
@@ -52,9 +59,6 @@ public class Fragment_Calc_Exclusion extends Fragment {
 	ImageView imageview_FCCDisplay;
 	ImageView imageview_ICDisplay;
 
-	//TODO determine if I even want this to work only on tablets, if so remove all these extra isTablet checks
-	//Currently the calculation area assumes duty factor which means must be tablet
-	
 	// The reason we don't use drawable is because Android is terrible at
 	// handling bitmaps in drawable and the
 	// asset folder method creates less memory crashing
@@ -155,9 +159,6 @@ public class Fragment_Calc_Exclusion extends Fragment {
 			button_target1g10g = (Button) view
 					.findViewById(R.id.exclusion_button_target1g10gbutton);
 
-			// permanent tablet form if i comment out the following line
-			// isTablet = Util_GlobalHandler.getGlobalHandler().getIsTablet();
-
 			if (isTablet) {
 				textview_DutyFactor = (TextView) view
 						.findViewById(R.id.exclusion_textfield_dutyfactor);
@@ -183,6 +184,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 					textview_DutyFactor.setBackgroundDrawable(getAssetImage(
 							getActivity(), "calc_label_dutyfactor"));
 				} catch (IOException e) {
+					// TODO: generate better error messages
 					e.printStackTrace();
 				}
 
@@ -213,6 +215,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 						getActivity(), "calc_label_frequency"));
 
 			} catch (IOException e) {
+				// TODO: generate better error messages
 				e.printStackTrace();
 			}
 
@@ -436,7 +439,9 @@ public class Fragment_Calc_Exclusion extends Fragment {
 		}
 	}
 
-	// load up previous values
+	/**
+	 * loads up previous values if the user has switched fragments
+	 */
 	public void loadPrevious() {
 		// load up previous values
 		setMaxAllowedPower(Util_GlobalHandler.getGlobalHandler()
@@ -535,6 +540,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 			imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 					getActivity(), "calc_exclusion_icexclusiontable"));
 		} catch (IOException e) {
+			// TODO: generate better error messages
 			e.printStackTrace();
 		}
 		equalClicked = false;
@@ -643,7 +649,9 @@ public class Fragment_Calc_Exclusion extends Fragment {
 		Util_GlobalHandler.getGlobalHandler().set_Exclusion_Distance(temp);
 	}
 
-	// determine which textbox was selected
+	/**
+	 * determine which edittext was selected and return the value in it
+	 */
 	public String determineClicked() {
 		if (textSelect.equals("maxallowedpower"))
 			return Util_GlobalHandler.getGlobalHandler()
@@ -661,7 +669,6 @@ public class Fragment_Calc_Exclusion extends Fragment {
 		return "";
 	}
 
-	// set the right textbox
 	public void setClicked(String temp) {
 		if (textSelect.equals("maxallowedpower"))
 			setMaxAllowedPower(temp);
@@ -798,7 +805,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 				}
 			}
 
-			// Does the regular calculation, both phone and tablet
+			// Performs the regular calculation
 			if (temp1.equals("") || temp2.equals("") || temp3.equals("")) {
 				setAnswer(error_missingField, "");
 				setAnswerIC(error_missingField, "");
@@ -854,6 +861,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_300mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 0.3 && frequency <= .450) {
@@ -863,6 +871,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_450mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 0.45 && frequency <= .835) {
@@ -872,6 +881,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_835mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 0.835 && frequency <= 1.9) {
@@ -881,6 +891,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_1900mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 1.9 && frequency <= 2.45) {
@@ -890,6 +901,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_2450mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 2.45 && frequency <= 3.5) {
@@ -899,6 +911,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_3500mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					} else if (frequency > 3.5) {
@@ -908,6 +921,7 @@ public class Fragment_Calc_Exclusion extends Fragment {
 							imageview_ICExclusionTable.setBackgroundDrawable(getAssetImage(
 									getActivity(), "calc_exclusion_5800mghz"));
 						} catch (IOException e) {
+							// TODO: generate better error messages
 							e.printStackTrace();
 						}
 					}

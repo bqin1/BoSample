@@ -10,14 +10,20 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * This fragment opens the home page
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Home extends Fragment {
 
 	Button button_KDB;
 	Button button_FCCLookup;
 	Button button_ICLookup;
 	Button button_LTELookup;
-	
-	//TODO: REMOVE the locked checks here and put it on sarbox
+
 	boolean isLocked;
 	String message_login_required;
 

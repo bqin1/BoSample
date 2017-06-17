@@ -22,6 +22,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * This fragment opens the dbm to mw converter, also provides validation powers given a target
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Calc_Converter extends Fragment {
 
     Button button_zero;
@@ -67,7 +74,7 @@ public class Fragment_Calc_Converter extends Fragment {
 
     private boolean isTablet = true;
 
-    //equalClicked is a variable that determines whether to computer values or append to existing
+    //equalClicked is a variable that determines whether to compute new values or append to existing
     boolean equalClicked = false;
     boolean isLocked;
 
@@ -140,9 +147,6 @@ public class Fragment_Calc_Converter extends Fragment {
                     .findViewById(R.id.calc_button_backspace);
             button_equal = (Button) view.findViewById(R.id.calc_button_equal);
 
-            // permanent tablet form if i comment out the following line
-            // isTablet = Util_GlobalHandler.getGlobalHandler().getIsTablet();
-
             if (isTablet) {
                 edittext_validation4 = (EditText) view
                         .findViewById(R.id.converter_edittext_validation4);
@@ -204,6 +208,7 @@ public class Fragment_Calc_Converter extends Fragment {
                             .setBackgroundDrawable(getAssetImage(getActivity(),
                                     "calc_label_validation1point6"));
                 } catch (IOException e) {
+                    // TODO: generate better error messages
                     e.printStackTrace();
                 }
             }
@@ -216,6 +221,7 @@ public class Fragment_Calc_Converter extends Fragment {
                         getActivity(), "calc_label_mw"));
 
             } catch (IOException e) {
+                // TODO: generate better error messages
                 e.printStackTrace();
             }
 
@@ -264,7 +270,7 @@ public class Fragment_Calc_Converter extends Fragment {
                 }
             });
 
-            // handle buttons
+            // handle buttons on touch listeners
             button_zero.setOnTouchListener(new OnTouchListener() {
 
                 @Override
@@ -438,7 +444,9 @@ public class Fragment_Calc_Converter extends Fragment {
 
     }
 
-    // load up previous values
+    /**
+     * loads up previous values if the user has switched fragments
+     */
     public void loadPrevious() {
         setDBM(Util_GlobalHandler.getGlobalHandler().get_Converter_dbm());
         setMW(Util_GlobalHandler.getGlobalHandler().get_Converter_mw());
@@ -540,8 +548,10 @@ public class Fragment_Calc_Converter extends Fragment {
         }
     }
 
+    /**
+     * Show the validation numbers given a value in mW
+     */
     public void setAnswerValidation(double mwValue) {
-        // Show the validation numbers
         double validation4 = Util_Calculator.numRound(mwValue / 1000, 10000);
         double validation2 = Util_Calculator.numRound(mwValue / 2000, 10000);
         double validation1 = Util_Calculator.numRound(mwValue / 4000, 10000);
@@ -587,7 +597,9 @@ public class Fragment_Calc_Converter extends Fragment {
         Util_GlobalHandler.getGlobalHandler().set_Converter_dbm(temp);
     }
 
-    // determine which textbox was selected and return the value already in it
+    /**
+     * determine which edittext was selected and return the value in it
+     */
     public String returnEditTextValue() {
         if (textSelect.equals("mw"))
             return Util_GlobalHandler.getGlobalHandler().get_Converter_mw();
@@ -599,7 +611,6 @@ public class Fragment_Calc_Converter extends Fragment {
         return "";
     }
 
-    // set the right textbox
     public void setClicked(String temp) {
         if (textSelect.equals("mw"))
             setMW(temp);

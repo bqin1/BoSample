@@ -21,6 +21,13 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+/**
+ * This fragment opens the targets page
+ *
+ * @author  Bo Qin
+ * @version 3.4
+ * @since   2014-11-07
+ */
 public class Fragment_Target extends Fragment {
 
 	Button button_622092;
@@ -71,6 +78,7 @@ public class Fragment_Target extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "target_622091"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -97,6 +105,7 @@ public class Fragment_Target extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "target_622092"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
@@ -123,6 +132,7 @@ public class Fragment_Target extends Fragment {
 						image.setBackgroundDrawable(getAssetImage(
 								getActivity(), "target_15282013"));
 					} catch (IOException e) {
+						// TODO: generate better error messages
 						e.printStackTrace();
 					}
 
